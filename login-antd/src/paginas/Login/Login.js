@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Input, Button, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import Usuarios from "../../modelos/Usuarios";
-import "./estilos.scss";
 import AuthContext from "../../context/AuthContext";
+import "./estilos.scss";
 
 function Login() {
   const { usuario, setLogin, loadingBoton, clickLogin } =
