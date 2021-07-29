@@ -1,19 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Input, Button, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Usuarios from "../../modelos/Usuarios";
 import "./estilos.scss";
+import AuthContext from "../../context/AuthContext";
 
 function Login() {
-  const [usuario, setUsuario] = useState(Usuarios);
-
-  const cambiarValores = (e) => {
-    setUsuario({
-      ...usuario,
-      [e.target.name]: e.target.value,
-    });
-    console.log(usuario);
-  };
+  const { usuario, setLogin, loadingBoton, clickLogin } =
+    useContext(AuthContext);
 
   return (
     <div className="login-contenedor">
@@ -28,7 +22,7 @@ function Login() {
             placeholder="Usuario"
             width={"100%"}
             value={usuario.usuario}
-            onChange={cambiarValores}
+            onChange={setLogin}
           />
         </div>
         <div className="login-input">
@@ -37,16 +31,22 @@ function Login() {
             placeholder="Contraseña"
             width={"100%"}
             value={usuario.password}
-            onChange={cambiarValores}
+            onChange={setLogin}
           />
         </div>
         <div className="login-boton">
-          <Button type="primary" width={"100%"} block={true}>
+          <Button
+            type="primary"
+            width={"100%"}
+            block={true}
+            loading={loadingBoton}
+            onClick={clickLogin}
+          >
             Entrar
           </Button>
         </div>
       </div>
-      <div className="login-formulario texto-centro">
+      <div className="login-formulario texto-centro texto-negrita">
         Power By Alberto Arias
       </div>
     </div>

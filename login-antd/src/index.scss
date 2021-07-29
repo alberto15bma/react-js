@@ -19,7 +19,11 @@ body {
   width: 100%;
   height: 100%;
   font-size: 13px;
+  overflow: hidden;
 }
 .texto-centro {
   text-align: center;
+}
+.texto-negrita {
+  font-weight: 500;
 }
