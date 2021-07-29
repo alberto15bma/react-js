@@ -4,7 +4,7 @@ const SERVER = {
   sufijo: "/api",
   url: function (endpoint) {
     // FUNCION QUE RETORNA LA URL CON EL ENDPOINT ENVIADA COMO PARAMETRO
-    return `${this.url}:${this.puerto}${this.sufijo}${endpoint}`;
+    return `${this.ip}:${this.puerto}${this.sufijo}${endpoint}`;
   },
 };
 
