@@ -1,9 +1,10 @@
+import Login from "./paginas/Login/Login";
 
 
 function App() {
   return (
     <div className="App">
-     hola
+      <Login />
     </div>
   );
 }
