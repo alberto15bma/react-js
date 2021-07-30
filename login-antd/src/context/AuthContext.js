@@ -1,11 +1,24 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Usuarios from "../modelos/Usuarios";
+import SERVER, { ENDPOINTS } from "../sistema/server";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(Usuarios);
   const [loadingBoton, setLoadingBoton] = useState(false);
+  const [conexionApi, setConexionApi] = useState(false);
+
+  useEffect(() => {
+    // comprobar si existe conexión con el api
+    const verificarConexionApi = async () => {
+      await SERVER.consulta(ENDPOINTS.VERIFICAR, null, "GET");
+
+      setConexionApi(true);
+    };
+    verificarConexionApi();
+  }, []);
+
   const setLogin = (e) => {
     setUsuario({
       ...usuario,
@@ -17,7 +30,7 @@ const AuthProvider = ({ children }) => {
     setLoadingBoton(true);
   };
 
-  const data = { usuario, setLogin, loadingBoton, clickLogin };
+  const data = { usuario, setLogin, conexionApi, loadingBoton, clickLogin };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
 
